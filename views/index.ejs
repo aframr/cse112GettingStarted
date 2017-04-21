@@ -7,5 +7,16 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+		<form>
+			Enter string:<br>
+			<input type="text" name="string" value="" id="s1">
+			<input type="button" value="button" onclick="document.body.appendChild(document.createTextNode(foo(document.getElementById('s1').value)))"><br>
+		</form>
+		<script>
+			function foo(bar) {
+				console.log(bar);
+				return (bar === "baz")
+			}
+		</script>
   </body>
 </html>
