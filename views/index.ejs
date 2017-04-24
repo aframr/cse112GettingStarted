@@ -10,7 +10,10 @@
 		<form>
 			Enter date:<br>
 			<input type="text" name="date" value="" id="d1">
-			<input type="button" value="button" onclick="document.body.appendChild(document.createTextNode(isValidDate(document.getElementById('d1').value)))"><br>
+			<input type="button" value="isValidDate" onclick="isValidDateRet(document.getElementById('d1').value)">
+			<input type="button" value="formatDate" onclick="formatDate(document.getElementById('d1').value)"><br>
+			<label for="output">The area is: </label><input type="textbox" name="output1"></input>
+			<label for="output">The area is: </label><input type="textbox" name="output2"></input>
 		</form>
 		<script>
 			function isValidDate(date) { // (mm/dd/yyyy)
@@ -36,6 +39,10 @@
 					return true;
 				return false;
 			}
+			function isValidDateRet(date){
+				var ret = isValidDate(date);
+				document.getElementsByName('output2')[0].value= ret;
+			}
 			
 			function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
 				var match = date.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
@@ -43,6 +50,7 @@
 				var month = match[1];
 				var day = match[2];
 				var newDate = day + "/" + month + "/" + year;
+				document.getElementsByName('output2')[0].value= newDate;
 				return newDate;
 			}
 		</script>
