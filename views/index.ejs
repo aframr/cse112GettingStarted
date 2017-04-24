@@ -8,14 +8,25 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 		<form>
-			Enter string:<br>
-			<input type="text" name="string" value="" id="s1">
-			<input type="button" value="button" onclick="document.body.appendChild(document.createTextNode(foo(document.getElementById('s1').value)))"><br>
+			Enter date:<br>
+			<input type="text" name="date" value="" id="d1">
+			<input type="button" value="button" onclick="document.body.appendChild(document.createTextNode(isValidDate(document.getElementById('d1').value)))"><br>
 		</form>
 		<script>
-			function foo(bar) {
-				console.log(bar);
-				return (bar === "baz")
+			function isValidDate(date) { // (mm/dd/yyyy)
+				console.log(date);
+				var validDate = [31,28,31,30,31,30,31,31,30,31,30,31];
+				var parsed_date = date.split("/");
+				var year = parseInt(parsed_date[2]);
+				var month = parseInt(parsed_date[0]);
+				var day = parseInt(parsed_date[1]);
+				if (year < 0 || day <= 0 || month <= 0 || month > 12)
+					return false;
+				if (year%4 == 0)
+					validDate[1] = 29;
+				if(day <= validDate[month-1])
+					return true;
+				return false;
 			}
 		</script>
   </body>
