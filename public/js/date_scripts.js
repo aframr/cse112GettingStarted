@@ -28,14 +28,25 @@ function isValidDateRet(date){
 
 function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
 	if (!isValidDate(date)) {
-		document.getElementsByName('output2')[0].value = "Invalid Date";
-		return;
+		return "Invalid Date";
 	}
 	var match = date.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
 	var year = match[3];
 	var month = match[1];
 	var day = match[2];
 	var newDate = day + "/" + month + "/" + year;
-	document.getElementsByName('output2')[0].value= newDate;
 	return newDate;
+}
+
+function formatDateRet(date) {
+	var ret = formatDate(date);
+	document.getElementsByName('output2')[0].value= newDate;
+}
+
+
+
+// this is necessary for mocha to recognize these functions via require
+if (typeof module !== 'undefined' && module.exports != null) {
+	    exports.isValidDate = isValidDate;
+	    exports.formatDate = formatDate;
 }
