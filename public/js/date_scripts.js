@@ -1,10 +1,10 @@
-function is_valid_date(date) { // (mm/dd/yyyy)
+function isValidDate(date) { // (mm/dd/yyyy)
 	//console.log(date + "\n");
 	var match = date.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
 	if (match == null) {
 		return false;
 	}
-	var valid_date = [31,28,31,30,31,30,31,31,30,31,30,31];
+	var validDate = [31,28,31,30,31,30,31,31,30,31,30,31];
 	var parsed_date = date.split("/");
 	var year = match[3];
 	var month = match[1];
@@ -16,17 +16,26 @@ function is_valid_date(date) { // (mm/dd/yyyy)
 	if (year < 0 || day <= 0 || month <= 0 || month > 12)
 		return false;
 	if (year%4 == 0)
-		valid_date[1] = 29;
-	if(day <= valid_date[month-1])
+		validDate[1] = 29;
+	if(day <= validDate[month-1])
 		return true;
 	return false;
 }
+function isValidDateRet(date){
+	var ret = isValidDate(date);
+	document.getElementsByName('output1')[0].value= ret;
+}
 
-function format_date(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
+function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
+	if (!isValidDate(date)) {
+		document.getElementsByName('output2')[0].value = "Invalid Date";
+		return;
+	}
 	var match = date.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
 	var year = match[3];
 	var month = match[1];
 	var day = match[2];
-	var new_date = day + "/" + month + "/" + year;
-	return new_date;
+	var newDate = day + "/" + month + "/" + year;
+	document.getElementsByName('output2')[0].value= newDate;
+	return newDate;
 }
