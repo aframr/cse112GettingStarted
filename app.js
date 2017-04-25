@@ -28,6 +28,9 @@ app.use('/users', users);
 app.use('/hello', hello);
 app.use('/doc', express.static(path.join(__dirname, 'doc')));
 
+//for jsdoc documentation 
+app.use('/docs', express.static(path.join(__dirname, 'docs')));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

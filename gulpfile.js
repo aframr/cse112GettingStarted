@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
-    mocha = require('gulp-mocha');
+    mocha = require('gulp-mocha'),
+    jsdoc = require('gulp-jsdoc3');
 
 /**
 * Lint Checker
@@ -29,4 +30,12 @@ gulp.task('apidoc', function(done){
    }, done);
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc']);
+/**
+* JS Documentation
+*/
+gulp.task('jsdoc', function (cb) {
+    gulp.src(['README.md', 'public/js/*.js'], {read: false})
+        .pipe(jsdoc(cb));
+});
+
+gulp.task('default', ['lint', 'mocha', 'apidoc','jsdoc']);

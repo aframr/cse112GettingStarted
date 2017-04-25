@@ -1,3 +1,7 @@
+/**
+ * Checks if date is valid.
+ * @param {string} date - the date inputted
+ */
 function isValidDate(date) { // (mm/dd/yyyy)
 	//console.log(date + "\n");
 	var match = date.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})$/);
@@ -26,6 +30,10 @@ function isValidDateRet(date){
 	document.getElementsByName('output1')[0].value= ret;
 }
 
+/**
+ * Converts date format to 'dd/mm/yyyy'
+ * @param {string} date - Takes the date with format of 'mm/dd/yy' and converts to format 'dd/mm/yyyy'
+ */
 function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
 	if (!isValidDate(date)) {
 		return "Invalid Date";
