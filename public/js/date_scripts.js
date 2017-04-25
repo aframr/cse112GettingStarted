@@ -22,10 +22,18 @@ function isValidDate(date) { // (mm/dd/yyyy)
 	//var day = parseInt(parsed_date[1]);
 	if (year < 0 || day <= 0 || month <= 0 || month > 12)
 		return false;
-	(year % 4) || ((year % 100 === 0) &&
-	      (year % 400)) ? 0 : 1
-	if (!((year % 4) || ((year % 100 === 0) && (year % 400))))
-		validDate[1] = 29;
+	//(year % 4) || ((year % 100 === 0) &&
+	  //    (year % 400)) ? 0 : 1
+	//if (!((year % 4) || ((year % 100 === 0) && (year % 400))))
+	//	validDate[1] = 29;
+
+	if (year % 4 === 0) {
+		if (year % 100 != 0) 
+			validDate[1] = 29;
+		else if (year % 100 === 0 && year % 400 === 0)
+			validDate[1] = 29;
+	}
+
 	if(day <= validDate[month-1])
 		return true;
 	return false;
