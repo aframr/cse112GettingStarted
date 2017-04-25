@@ -11,3 +11,5 @@ deploy:
   app: lucky13-cse112-getting-started
   on:
     repo: aframr/cse112GettingStarted
+notifications:
+slack: cse112lucky13:KZO7RAgO53DaVL2ej8rYGIzh
