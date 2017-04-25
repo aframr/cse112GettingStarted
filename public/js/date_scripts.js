@@ -7,9 +7,9 @@
  */
 function isValidDate(date) { // (mm/dd/yyyy)
 	//console.log(date + "\n");
-	var match = date.match(/^(\d{1,2})\/\(\d{1,2})\/\(\d{4})$/);
+	var match = date.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
 	if (match == null){
-	    match = date.match(/^(\d{1,2})\-\(\d{1,2})\-\(\d{4})$/);
+	    match = date.match(/^(\d{1,2})\-(\d{1,2})\-(\d{4})$/);
 	    if(match == null){
 		   return false;
 		}
