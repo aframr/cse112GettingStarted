@@ -6,7 +6,9 @@
  * @return {Boolean} - true if valid date, false if invalid date
  */
 function isValidDate(date) { // (mm/dd/yyyy)
-	//console.log(date + "\n");
+	if (!(typeof(date) === 'string')) {
+		return false;
+	}
 	var match = date.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
 	if (match == null){
 	    match = date.match(/^(\d{1,2})\-(\d{1,2})\-(\d{4})$/);
@@ -48,6 +50,9 @@ function isValidDate(date) { // (mm/dd/yyyy)
  * @param {string} date - the date string inputted
  */
 function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
+	if (!(typeof(date) === 'string')) {
+		return "Invalid Date";
+	}
 	if (!isValidDate(date)) {
 		return "Invalid Date";
 	}

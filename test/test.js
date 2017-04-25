@@ -2,8 +2,27 @@ const assert = require('assert');
 var scripts = require('../public/js/date_scripts.js');
 
 describe('isValidDate():', function() {
+	describe('non string type:', function() {
+		it('numbers:', function() {
+			assert.equal(false, scripts.isValidDate(5));
+			assert.equal(false, scripts.isValidDate(NaN));
+			assert.equal(false, scripts.isValidDate(03152017));
+			assert.equal(false, scripts.isValidDate(-5));
+		});
+		it('boolean:', function() {
+			assert.equal(false, scripts.isValidDate(true));
+			assert.equal(false, scripts.isValidDate(false));
+		});
+		it('other types:', function() {
+			assert.equal(false, scripts.isValidDate({}));
+			assert.equal(false, scripts.isValidDate([]));
+			assert.equal(false, scripts.isValidDate(Object));
+			assert.equal(false, scripts.isValidDate(undefined));
+		});
+	});
 	describe('regex tests:', function() {
 		it('improper formats', function() {
+			assert.equal(false, scripts.isValidDate(""));
 			assert.equal(false, scripts.isValidDate("03 15 2017"));
 			assert.equal(false, scripts.isValidDate("03152017"));
 			assert.equal(false, scripts.isValidDate("03-15-2017-00"));
@@ -56,6 +75,24 @@ describe('isValidDate():', function() {
 });
 
 describe('formatDate():', function() {
+	describe('non string type:', function() {
+		it('numbers:', function() {
+			assert.equal("Invalid Date", scripts.formatDate(5));
+			assert.equal("Invalid Date", scripts.formatDate(NaN));
+			assert.equal("Invalid Date", scripts.formatDate(03152017));
+			assert.equal("Invalid Date", scripts.formatDate(-5));
+		});
+		it('boolean:', function() {
+			assert.equal("Invalid Date", scripts.formatDate(true));
+			assert.equal("Invalid Date", scripts.formatDate(false));
+		});
+		it('other types:', function() {
+			assert.equal("Invalid Date", scripts.formatDate({}));
+			assert.equal("Invalid Date", scripts.formatDate([]));
+			assert.equal("Invalid Date", scripts.formatDate(Object));
+			assert.equal("Invalid Date", scripts.formatDate(undefined));
+		});
+	});
 	it('proper validDate connection', function() {
 		assert.equal("Invalid Date", scripts.formatDate("99/99/2017"));
 	});
