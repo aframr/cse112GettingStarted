@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/users', users);
 app.use('/hello', hello);
-// app.use('/doc', express.static(path.join(__dirname, 'doc')));
+app.use('/apidoc', express.static(path.join(__dirname, 'doc')));
 
 //for jsdoc documentation 
 app.use('/doc', express.static(path.join(__dirname, 'docs/gen')));
