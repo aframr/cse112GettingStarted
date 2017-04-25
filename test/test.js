@@ -9,6 +9,8 @@ describe('isValidDate():', function() {
 			assert.equal(false, scripts.isValidDate("03-15-2017-00"));
 			assert.equal(false, scripts.isValidDate("/03/15/2017"));
 			assert.equal(false, scripts.isValidDate("03/15//2017"));
+			assert.equal(false, scripts.isValidDate("3-1/2014"));
+			assert.equal(false, scripts.isValidDate("3/23-2015"));
 		});
 		it('proper formats', function() {
 			assert.equal(true, scripts.isValidDate("03/15/2017"));
