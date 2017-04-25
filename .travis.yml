@@ -12,4 +12,4 @@ deploy:
   on:
     repo: aframr/cse112GettingStarted
 notifications:
-slack: cse112lucky13:KZO7RAgO53DaVL2ej8rYGIzh
+  slack: cse112lucky13:KZO7RAgO53DaVL2ej8rYGIzh

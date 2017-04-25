@@ -1,6 +1,9 @@
 /**
- * Checks if date is valid.
- * @param {string} date - the date inputted
+ * Checks if date is valid, i.e. of general format mm/dd/yyyy, with (m)onth and
+ * (d)ay being either single or double digit, and '/' replaceable with '-', and
+ * of valid numeric value
+ * @param {String} date - the date string inputted
+ * @return {Boolean} - true if valid date, false if invalid date
  */
 function isValidDate(date) { // (mm/dd/yyyy)
 	//console.log(date + "\n");
@@ -19,20 +22,19 @@ function isValidDate(date) { // (mm/dd/yyyy)
 	//var day = parseInt(parsed_date[1]);
 	if (year < 0 || day <= 0 || month <= 0 || month > 12)
 		return false;
-	if (year%4 == 0)
+	(year % 4) || ((year % 100 === 0) &&
+	      (year % 400)) ? 0 : 1
+	if (!((year % 4) || ((year % 100 === 0) && (year % 400))))
 		validDate[1] = 29;
 	if(day <= validDate[month-1])
 		return true;
 	return false;
 }
-function isValidDateRet(date){
-	var ret = isValidDate(date);
-	document.getElementsByName('output1')[0].value= ret;
-}
 
 /**
- * Converts date format to 'dd/mm/yyyy'
- * @param {string} date - Takes the date with format of 'mm/dd/yy' and converts to format 'dd/mm/yyyy'
+ * Converts date format to 'dd/mm/yyyy' from mm/dd/yyyy, '/' replaceable 
+ * with '-' and (m)onth and (d)ay permissible as single or double digit
+ * @param {string} date - the date string inputted
  */
 function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm/yyyy || dd-mm-yyyy
 	if (!isValidDate(date)) {
@@ -45,13 +47,6 @@ function formatDate(date) { // input is mm/dd/yyyy || mm-dd-yyyy to output dd/mm
 	var newDate = day + "/" + month + "/" + year;
 	return newDate;
 }
-
-function formatDateRet(date) {
-	var ret = formatDate(date);
-	document.getElementsByName('output2')[0].value= newDate;
-}
-
-
 
 // this is necessary for mocha to recognize these functions via require
 if (typeof module !== 'undefined' && module.exports != null) {

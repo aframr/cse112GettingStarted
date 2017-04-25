@@ -39,8 +39,16 @@ describe('isValidDate():', function() {
 	});
 	describe('corner cases:', function() {
 		it('leap years', function() {
-			assert.equal(true, scripts.isValidDate("02/29/2016"));
 			assert.equal(false, scripts.isValidDate("02/29/2015"));
+			assert.equal(false, scripts.isValidDate("02/29/2009"));
+			// divisible by 100
+			assert.equal(false, scripts.isValidDate("02/29/1800"));
+			assert.equal(false, scripts.isValidDate("02/29/2100"));
+			// divisible by 400
+			assert.equal(true, scripts.isValidDate("02/29/2000"));
+			assert.equal(true, scripts.isValidDate("02/29/2400"));
+			assert.equal(true, scripts.isValidDate("02/29/2012"));
+			assert.equal(true, scripts.isValidDate("02/29/2016"));
 		});
 	});
 });
@@ -49,8 +57,9 @@ describe('formatDate():', function() {
 	it('proper validDate connection', function() {
 		assert.equal("Invalid Date", scripts.formatDate("99/99/2017"));
 	});
-	it('idk what to test', function() {
+	it('format tests', function() {
 		assert.equal("15/03/2017", scripts.formatDate("03/15/2017"));
+		assert.equal("01/02/2017", scripts.formatDate("02-01-2017"));
 	});
 });
 
