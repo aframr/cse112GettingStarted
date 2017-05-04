@@ -40,7 +40,7 @@ gulp.task('test', function () {
 });
 
 gulp.task('codeclimate', function() {
-	return gulp.src(['./coverage/lcov.info'], { read: false })
+	return gulp.src(['./coverage/lcov.info'], {read: false})
 	.pipe(reporter({ token: '87537e128eafb7a101350927d1f311312bdfc89fca8d27993210848f6a6ce93a' })) ;
 });
 
