@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     jsdoc = require('gulp-jsdoc3');
     eslint = require('gulp-eslint');
+    istanbul = require('gulp-istanbul');
 
 /**
 * Lint Checker
@@ -26,12 +27,23 @@ gulp.task('lint', () => {
 	.pipe(eslint.failAfterError());
 	});
 
+gulp.task('pre-test', function () {
+	return gulp.src(['**/*.js', '!node_modules/**', '!doc/**', '!docs/**'])
+	// Covering files
+	.pipe(istanbul())
+	// Force `require` to return covered files
+	.pipe(istanbul.hookRequire());
+});
+
 /**
 * Run Mocha Tests
 */
-gulp.task('mocha', () =>
+gulp.task('mocha', ['pre-test'], () =>
    gulp.src('test/test.js', {read: false})
       .pipe(mocha({reporter: 'nyan'}))
+      .pipe(istanbul.writeReports())
+      // Enforce a coverage of at least 90%
+      // .pipe(istanbul.enforceThresholds({ thresholds: { global:10 } }));
 );
 
 /**
