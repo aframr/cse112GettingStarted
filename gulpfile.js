@@ -2,7 +2,17 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     mocha = require('gulp-mocha'),
-    jsdoc = require('gulp-jsdoc3');
+    jsdoc = require('gulp-jsdoc3'),
+	uglify = require('gulp-uglify');
+ 
+/**
+* Uglify JS
+*/
+gulp.task('compress', function () {
+  return gulp.src('./**/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist'));
+});
 
 /**
 * Lint Checker
