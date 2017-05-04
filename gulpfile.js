@@ -4,6 +4,8 @@ var gulp = require('gulp'),
 	mocha = require('gulp-mocha'),
 	jsdoc = require('gulp-jsdoc3');
 	nightwatch = require('gulp-nightwatch');
+	runSequence = require('run-sequence');
+	connect = require('gulp-connect');
 
 /**
 * Lint Checker
@@ -16,16 +18,50 @@ gulp.task('lint', function () {
 /**
 * Run Nightwatch tests
 */
-gulp.task('nightwatch', function() {
-  gulp.src('test/nightwatch.js')
+/*
+gulp.task("run-e2e-tests-ch", function (cb) {
+  runSequence(
+    "run-http-server",
+    "nightwatch:chrome",
+    "kill-http-server",
+    cb);
+});
+
+gulp.task("run-e2e-tests-ff", function (cb) {
+  runSequence(
+    "run-http-server",
+    "nightwatch:firefox",
+    "kill-http-server",
+    cb);
+});
+*/
+
+gulp.task('nightwatch:chrome', function() {
+	gulp.src('test/nightwatch_test/*.js')
     .pipe(nightwatch({
-      configFile: 'test/nightwatch.json',
-			cliArgs: {
-        env: 'chrome',
-        tag: 'sandbox'
-      }
+      configFile: 'nightwatch_ch.json'
     }));
 });
+
+gulp.task('nightwatch:firefox', function() {
+	gulp.src('test/nightwatch_test/*.js')
+    .pipe(nightwatch({
+      configFile: 'nightwatch_ff.json'
+    }));
+});
+
+/*
+gulp.task("run-http-server", function () {
+  return connect.server({
+    port: 8888
+  });
+});
+
+gulp.task("kill-http-server", function () {
+  return connect.serverClose();
+});
+*/
+
 
 /**
 * Run Mocha Tests
@@ -53,4 +89,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc','jsdoc']);
+gulp.task('default', ['lint', 'mocha', 'apidoc', 'jsdoc', 'nightwatch:chrome']);
