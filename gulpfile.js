@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'),
     jsdoc = require('gulp-jsdoc3');
     eslint = require('gulp-eslint');
+    istanbul = require('gulp-istanbul');
 
 /**
 * Lint Checker
@@ -26,16 +27,38 @@ gulp.task('lint', () => {
 	.pipe(eslint.failAfterError());
 	});
 
-/**
-* Run Mocha Tests
-*/
-gulp.task('mocha', () =>
-   gulp.src('test/test.js', {read: false})
-      .pipe(mocha({reporter: 'nyan'}))
-);
+// gulp.task('pre-test', function () {
+// 	// TODO: src should include more than this? ./**/*.js?
+// 	return gulp.src(['public/js/*.js', '!node_modules/**', '!doc/**', '!docs/**'])
+// 	// Covering files
+// 	.pipe(istanbul({includeUntested: true}))
+// 	// Force `require` to return covered files
+// 	.pipe(istanbul.hookRequire());
+// });
+// 
+// /**
+// * Run Mocha Tests
+// */
+// gulp.task('mocha', ['pre-test'], () =>
+//    gulp.src('test/test.js', {read: false})
+//       .pipe(mocha({reporter: 'nyan'}))
+//       .pipe(istanbul.writeReports())
+//       // Enforce a coverage of at least 90%
+//       // .pipe(istanbul.enforceThresholds({ thresholds: { global:10 } }));
+// );
 
+gulp.task('test', function () {
+	return gulp.src(['public/js/*.js', '!node_modules/**', '!doc/**', '!docs/**'])
+	.pipe(istanbul({includeUntested: true}))
+	.pipe(istanbul.hookRequire())
+	.on('finish', function () {
+		gulp.src('test/test.js')
+		.pipe(mocha({reporter: 'nyan'}))
+		.pipe(istanbul.writeReports());
+	});
+});
 /**
-* Run documentation generator
+ * Run documentation generator
 */
 gulp.task('apidoc', function(done){
    apidoc({
@@ -52,4 +75,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc','jsdoc']);
+gulp.task('default', ['lint', 'mocha', 'test', 'apidoc','jsdoc']);
