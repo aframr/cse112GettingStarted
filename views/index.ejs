@@ -2,34 +2,118 @@
 <html>
   <head>
     <title>Lucky Thirteen</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.1/css/bulma.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script type="text/javascript" src="js/date_scripts.js"></script>
+    <script type="text/javascript" src="../public/js/date_scripts.js"></script>
     <script>
-	$(document).ready(function(){
-		$("#validateButton").click(function(){
-			var date = $('#d1').val();
-			var ret = isValidDate(date);
-			$('#output1').val(ret);
-		});
-		$("#formatButton").click(function(){
-			var date = $('#d1').val();
-			var ret = formatDate(date);
-			$('#output2').val(ret);
-		});
-	});
+    $(document).ready(function(){
+
+    $("#checkmark").css("display", "none");
+    $("#validateButton").click(function(){
+      $("#checkmark").css("display", "inline");
+      var date = $('#d1').val();
+      var ret = isValidDate(date);
+      if (ret)
+        $("#checkmark").html('<i class="fa fa-check fa-2x" id="checkmark" aria-hidden="true"></i>');
+      else 
+        $("#checkmark").html('<i class="fa fa-times fa-2x" id="checkmark" aria-hidden="true"></i>');
+      //$('#output1').val(ret);
+    });
+    $("#formatButton").click(function(){
+      var date = $('#d1').val();
+      var ret = formatDate(date);
+      $('#output2').val(ret);
+    });
+  });
     </script>
+    <style type="text/css" media="screen">
+    .details {
+
+      margin: 20px;
+    }
+    .app {
+      margin: 20px;
+    }
+
+    .meat {
+      padding-top: 50px;
+      min-height: 500px;
+      background-color: white;
+    }
+    .banner {
+      min-height: 300px;
+      background-color: #1abc9c;
+    }
+    .bottom {
+      min-height:  200px;
+      background-color: #3498db;
+    }
+    .fa-check {
+      color: LawnGreen;
+    }
+    .fa-times {
+      color: red;
+    }
+    .team-name {
+      padding-top: 230px;
+      margin-left: 50px;
+      text-align: left;
+      vertical-align: bottom;
+    }
+
+    #d1 {
+      width: 80%;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+
+  </style>
   </head>
-  <body>
-    <h1>CSE 112 Lucky 13</h1>
-    <p>Welcome to our app!</p>
-		Enter date:<br>
-		<input type="text" name="date" value="" id="d1" placeholder="mm/dd/yyyy">
-		<input type="button" value="Validate" id="validateButton">
-		<input type="button" value="Format" id="formatButton"><br><br>
-		<label for="output">Date Validity: </label>
-		<input type="text" id="output1"></input><br>
-		<label for="output">Formatted Date: </label>
-		<input type="text" id="output2"></input>
-  </body>
+<body>
+  <section class="banner">
+    <div class="container">
+      <div class="heading team-name">
+        <h1 class="title is-1"> CSE 112 Lucky 13 </h1>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="columns meat">
+    <div class="column is-offset-1 is-5  details">
+      <div class="content">
+        <h1 class=""> Welcome to our App! </h1>
+        <p> Our application allows input of a date and will validate its content (i.e. whether it is correctly formatted or an actual valid date). And upon pressing the format button, it will output a formatted date in the form of 'dd/mm/yyyy'. </p>
+      </div>
+    </div>
+    <div class="column is-5">
+      <div class="content app">
+        <div class="field has-addons">
+          <div>
+            <h1 class=""> Date Application </h1>
+            <label class="label">Enter date:</label>
+              <input class="input" aria-hidden="true" type="text" name="date" value="" id="d1" placeholder="mm/dd/yyyy"></input><span id="checkmark"></span>
+            
+            
+            <br>
+            <input class="button is-primary is-outlined" type="button" value="Validate" id="validateButton">
+            <input class="button is-primary is-outlined" type="button" value="Format" id="formatButton"><br><br>
+            
+            <label class="label">Formatted Date: </label>
+            
+            <input class="input" aria-hidden="true" type="text" name="formatted-date" value="" id="output2"></input>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="columns bottom">
+</section>
+
+</body>
 </html>
