@@ -6,15 +6,6 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify');
  
 /**
-* Uglify JS
-*/
-gulp.task('compress', function () {
-  return gulp.src('public/js/*.js')
-    .pipe(uglify())
-    .pipe(gulp.dest('dist'));
-});
-
-/**
 * Lint Checker
 */
 gulp.task('lint', function () {
@@ -48,4 +39,13 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc','jsdoc']);
+/**
+* Uglify JS
+*/
+gulp.task('compress', function () {
+  return gulp.src('public/js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('public/dist'));
+});
+
+gulp.task('default', ['lint', 'mocha', 'apidoc','jsdoc', 'compress']);
