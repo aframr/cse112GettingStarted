@@ -120,4 +120,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc', 'nightwatch:chrome']);
+gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc']);
