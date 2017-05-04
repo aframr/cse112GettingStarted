@@ -23,6 +23,7 @@
     "serve-favicon": "~2.4.2"
   },
   "devDependencies": {
-    "gulp-jsdoc3": "^1.0.1"
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-nightwatch": "^0.3.2"
   }
 }
