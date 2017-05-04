@@ -75,4 +75,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'test', 'apidoc','jsdoc']);
+gulp.task('default', ['lint', 'test', 'apidoc','jsdoc']);
