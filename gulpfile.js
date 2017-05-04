@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     jsdoc = require('gulp-jsdoc3');
     eslint = require('gulp-eslint');
     istanbul = require('gulp-istanbul');
+    reporter = require('gulp-codeclimate-reporter');
 
 /**
 * Lint Checker
@@ -38,6 +39,11 @@ gulp.task('test', function () {
 	});
 });
 
+gulp.task('codeclimate', function() {
+	return gulp.src(['./coverage/lcov.info'], { read: false })
+	.pipe(reporter({ token: '87537e128eafb7a101350927d1f311312bdfc89fca8d27993210848f6a6ce93a' })) ;
+});
+
 /**
  * Run documentation generator
 */
@@ -56,4 +62,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'test', 'apidoc','jsdoc']);
+gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc','jsdoc']);
