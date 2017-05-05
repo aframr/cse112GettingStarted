@@ -2,9 +2,9 @@ var gulp = require('gulp'),
    jshint = require('gulp-jshint'),
     apidoc = require('gulp-apidoc'),
     mocha = require('gulp-mocha'),
-	  concat = require('gulp-concat'),
-	  rename = require('gulp-rename'),
-	  uglify = require('gulp-minify'),
+    concat = require('gulp-concat'),
+    rename = require('gulp-rename'),
+    uglify = require('gulp-minify'),
     uglifyjs = require('uglify-js'); 
     minifier = require('gulp-uglify/minifier');
     jsdoc = require('gulp-jsdoc3');
@@ -136,9 +136,9 @@ gulp.task('compress', function () {
   return gulp.src('public/js/*.js')
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('public/dist'))
-	  .pipe(rename('scripts.min.js'))
+	.pipe(rename('scripts.min.js'))
     .pipe(minifier(options,uglifyjs))
-	  .pipe(gulp.dest('public/dist'));
+	.pipe(gulp.dest('public/dist'));
 });
 
 gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc', 'compress']);
