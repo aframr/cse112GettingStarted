@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     uglifyjs = require('uglify-js'),
+    cleanCSS = require('gulp-clean-css'),
     minifier = require('gulp-uglify/minifier');
     jsdoc = require('gulp-jsdoc3');
     eslint = require('gulp-eslint');
@@ -13,6 +14,7 @@ var gulp = require('gulp'),
     nightwatch = require('gulp-nightwatch');
     runSequence = require('run-sequence');
     connect = require('gulp-connect');
+    pump = require('pump');
 	
 
 /**
@@ -128,16 +130,29 @@ gulp.task('jsdoc', function (cb) {
 /**
 * Uglify
 */ 
-gulp.task('compress', function () {
+gulp.task('compress', function (cb) {
    var options = {
-    // preserveComments: 'all'
+
    };
-  return gulp.src('public/js/*.js')
-    .pipe(concat('scripts.js'))
-    .pipe(gulp.dest('public/dist'))
-	.pipe(rename('scripts.min.js'))
-    .pipe(minifier(options,uglifyjs))
-	.pipe(gulp.dest('public/dist'));
+  pump([
+    gulp.src('public/js/date_scripts.js'),
+    concat('scripts.js'),
+    gulp.dest('public/dist/js'),
+	 rename('scripts.min.js'),
+    minifier(options, uglifyjs),
+	 gulp.dest('public/dist/js')
+    ],
+    cb
+  );  
+  
 });
 
-gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc', 'compress']);
+/**
+ * Clean css
+ */
+gulp.task('minify-css', function() {
+  return gulp.src('public/stylesheets/*.css')
+    .pipe(cleanCSS({compatibility: 'ie8'}))
+    .pipe(gulp.dest('public/dist/css/'));
+});
+gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc', 'compress', 'minify-css']);
