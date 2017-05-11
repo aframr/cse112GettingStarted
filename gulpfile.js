@@ -103,4 +103,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc', 'jsdoc', 'nightwatch:chrome']);
+gulp.task('default', ['lint', 'mocha', 'apidoc', 'jsdoc', 'nightwatch:chrome', 'nightwatch:firefox']);
