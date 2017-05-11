@@ -16,8 +16,6 @@ deploy:
   api_key:
     secure: vpQS+0QErqSAHZgLE7ydySk8qt4/V8WZjrkLaiCiyON9Mifj8eQ013kapcpBSjxMcW6GEIj2/pn1cG3EdFHnebBdv/hLpQhOrLB0looSTdsqHHKxqoxj2FA36Pqc5alwTka+kspoeSK9Tb7MCcaLyqPLtJoedcoXclmuF9VRzNrun/uRJiHnvgSpfSYmprT6/LGqspGV/gSphOQtPm59HlHnL7sWR8Y9tUcvqyCj2Mzya/xxzt+t5jT6ivU7dPhVBjPegi0EALazOQNB5z1c/VAhskBRHZRtToG8lBL1OHPAgqka+q0CJz80/B5PqJf60GEfLx50BVeWjWKxun4GXCvkxcGMivgCs53/hNwHnaroQl5yst0594l2YqkIJSutj922/ZyzRnCPByan2+s5rpajOn57AqR8dg2spy4bWrNeRLkIBtSdY72IPsqec3fuKvVxRBKEsI1bUZtpIMrtbChjnfMDsvRtpjU+gIQAM6i60p6fCQy1/m71q6jmkC/C3YOSzOxouIwJ2vlfmAsXDONGlM66Ms90gRYThNK2CCtX1smPe0iFdVDnXCVO5xDHLwP1Pd+QAuNpRkp41ijoPA2zIW0ec8Jcr5wSI4tXlqfOA5I+2ureem12zdVP1JrICd5FznNeU/aYiqKzZ0KSxDNWtanvcSC9ZilWMpxNT84=
   app: lucky13
-    master: lucky13
-    develop: lucky13-dev
   on:
     repo: aframr/cse112GettingStarted
     all_branches: true
