@@ -64,6 +64,13 @@ gulp.task('nightwatch:firefox', function() {
     }));
 });
 
+gulp.task('nightwatch:basic', function() {
+	gulp.src('test/nightwatch_test/*.js')
+    .pipe(nightwatch({
+      configFile: 'nightwatch.json'
+    }));
+});
+
 /*
 gulp.task("run-http-server", function () {
   return connect.server({
@@ -103,4 +110,4 @@ gulp.task('jsdoc', function (cb) {
         .pipe(jsdoc(cb));
 });
 
-gulp.task('default', ['lint', 'mocha', 'apidoc', 'jsdoc', 'nightwatch:chrome', 'nightwatch:firefox']);
+gulp.task('default', ['lint', 'mocha', 'apidoc', 'jsdoc', 'nightwatch:basic']);
