@@ -1,13 +1,15 @@
 module.exports = {
-  'Demo test Google' : function (browser) {
+  'test https://lucky13-cse112-getting-started.herokuapp.com' : function (browser) {
     browser
-      .url('http://www.google.com')
+      .url('https://lucky13-cse112-getting-started.herokuapp.com')
       .waitForElementVisible('body', 1000)
-      .setValue('input[type=text]', 'nightwatch')
-      .waitForElementVisible('button[name=btnG]', 1000)
-      .click('button[name=btnG]')
+      .setValue('#d1', '05/06/2015')
+      .click('#validateButton')
       .pause(1000)
-      .assert.containsText('#main', 'Night Watch')
+      .assert.visible('#checkmark')
+      .click('#formatButton')
+      .pause(1000)
+      .assert.valueContains('#output2', '06/05/2015')
       .end();
   }
 };

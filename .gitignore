@@ -3,6 +3,10 @@ logs
 *.log
 npm-debug.log*
 
+# /doc and /docs directories
+doc/
+docs/
+
 # Runtime data
 pids
 *.pid
