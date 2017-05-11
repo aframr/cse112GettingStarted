@@ -37,8 +37,8 @@ jspm_packages
 .node_repl_history
 
 # Documentation
-doc/*
-docs/*
+doc
+docs
 
 # Misc
 .DS_Store
