@@ -20,4 +20,4 @@ deploy:
     develop: lucky13-dev
   on:
     repo: aframr/cse112GettingStarted
-    branch: heroku
+    all_branches: true
