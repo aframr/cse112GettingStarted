@@ -51,8 +51,9 @@ gulp.task('test', function () {
 
 gulp.task('codeclimate', function() {
 	return gulp.src(['./coverage/lcov.info'], {read: false})
-	.pipe(reporter({ token: '87537e128eafb7a101350927d1f311312bdfc89fca8d27993210848f6a6ce93a' })) ;
+	.pipe(reporter({ token: '9cc28fc7555a2ac1c50d2ffd73cc421ab1cccab9bcc19558f4b1ae800f41c988' })) ;
 });
+
 /**
 * Run Nightwatch tests
 */
