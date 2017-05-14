@@ -49,7 +49,7 @@ gulp.task('test', function () {
 	});
 });
 
-gulp.task('codeclimate', function() {
+gulp.task('codeclimate',['test'], function() {
 	return gulp.src(['./coverage/lcov.info'], {read: false})
 	.pipe(reporter({ token: '9cc28fc7555a2ac1c50d2ffd73cc421ab1cccab9bcc19558f4b1ae800f41c988' })) ;
 });
@@ -156,4 +156,4 @@ gulp.task('minify-css', function() {
     .pipe(cleanCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest('public/dist/css/'));
 });
-gulp.task('default', ['lint', 'test', 'codeclimate', 'apidoc', 'jsdoc', 'compress', 'minify-css']);
+gulp.task('default', ['lint', 'codeclimate', 'apidoc', 'jsdoc', 'compress', 'minify-css']);
