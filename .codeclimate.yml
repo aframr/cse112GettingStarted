@@ -1,17 +1,13 @@
-engines: 
-  csslint: 
+---
+engines:
+  eslint:
     enabled: true
-  duplication: 
-    config: ~
-    enabled: true
-    languages: 
-      - javascript
-  eslint: 
-    enabled: true
-exclude_paths: 
-  - docs/**/*
-  - doc/**/*
-ratings: 
-  paths: 
-    - "**.js"
-    - "**.cs"
+  csslint:
+    enabled: false
+ratings:
+  paths:
+  - "**.js"
+  - "**.css"
+exclude_paths:
+- docs/**/*
+- doc/**/*
